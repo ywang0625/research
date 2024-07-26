@@ -26,7 +26,8 @@
 6. To run the configuration script, run the following command
         build/X86_MESI_THREE_LEVEL/gem5.opt /path/to/your/config --benchmark {gapbs}
    The benchmark supports the following types:  {gapbs-cc-test,gapbs-cc-small,gapbs-cc-medium,gapbs-bc-test,gapbs-bc-small,gapbs-bc-medium,gapbs-tc-test,gapbs-tc-small,gapbs-tc-medium,gapbs-pr-test,gapbs-pr-small,gapbs-pr-medium,gapbs-bfs-test,gapbs-bfs-small,gapbs-bfs-medium}
-
+7. The statistics of the program will be located at: 
+        m5out/stats.txt
 
 
 
