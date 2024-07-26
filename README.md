@@ -1,6 +1,7 @@
 ***Output Files (July 26, 2024)***
 
 **gem5 build process**
+
 *Note:
         (1) The processes are specifically executed with gem5 v24.0.0.0
         (2) Steps 1 - 4 are for gapbs benchmark, skip to step 5 for building gem5
@@ -27,6 +28,8 @@
    The benchmark supports the following types:  {gapbs-cc-test,gapbs-cc-small,gapbs-cc-medium,gapbs-bc-test,gapbs-bc-small,gapbs-bc-medium,gapbs-tc-test,gapbs-tc-small,gapbs-tc-medium,gapbs-pr-test,gapbs-pr-small,gapbs-pr-medium,gapbs-bfs-test,gapbs-bfs-small,gapbs-bfs-medium}
 
 
+
+
 **Important Matrix**
 *Cache*
 1. For cache demand hit, miss, and access, search the following key words:
@@ -40,6 +43,8 @@
 *Memory*
 1. 'mem_ctrl' is for memory controller statistics, and 'dram' is for DRAM-specific metrics. 
 2. to find bandwidth, either it contains 'bw' or have the description on the side
+
+
 
 **Quick Access to Commands**
 1. Building gem5
