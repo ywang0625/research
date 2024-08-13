@@ -1,37 +1,32 @@
-***Output Files (July 26, 2024)***
+***2024 Undergraduate Summer Research***
+**Table of Contents**
+1. Overview
+2. gem5 build process
+3. Statistic
+4. Important Matrix for stats.txt
+5. Quick Access to Commands
+
+**Overview of the Summer-Research folder**
+In this folder consists of 4 folders: Report, Configuration Scripts, Source Codes, and Data.
+In the Report folder consists a detailed report of the work done in summer. As there are lengthy code or data, they are stored in the other three folders depending on their file type. 
+The files inside each folder are given a number for potential easier access, as they will be referenced in the report. 
+Example: In the report, it says "run_simple.py locates at 1.0.1 in the Summer-Research folder". Then the script, run_simple.py will be located 1-Configuration-Scripts/1.0-gem5-scripts/1.0.1-run_simple. 
+Note: The location inside the folder is different from the path that I ran in commands. 
 
 **gem5 build process**
+1. Download the dependenciees required based on your host system. The dependencies can be found here on the official website:
+        https://www.gem5.org/documentation/general_docs/building#dependencies 
+2. Clone the gem5 repository from Github using git
+3. Use scons to build gem5 inside the gem5 folder
+        scons build/{ISA}/gem5.{variant} -j{cpus on your platform}
+4. It will take 40min ~ 1hr to finish your initial build. If your gem5 finished building, it will show this message:
+        scons: done building targets.
 
-*Note:
-        (1) The processes are specifically executed with gem5 v24.0.0.0
-        (2) Steps 1 - 4 are for gapbs benchmark, skip to step 5 for building gem5
-
-1. After cloning the gem5-resource repoistory, clone the gem5 repository specifically in src/gapbs/. 
-2. Chaging directory to src/gapbs/gem5/util/m5, we need to create m5 because it is required to create disk image. Below is the command: 
-        scons build/x86/out/m5
-3. To create disk image, we need to add the packer binary in the disk-image directory. Firstly, go back to /src/gapbs/, and create the directory http inside disk-image
-        cd disk-image/
-        mkdir http
-        touch http/dummy.txt
-   Without the directory http, when we're building the disk image we can run into error saying http directory not found
-4. We run the command to download packer binary and build disk-image
-        ./build.sh
-
-5. To build gem5, scons is used. The following is the syntax to build gem5
-        scons build/{ISA}/gem5.{variant} - j {cpus}
-   {variant} specifies the compilation setting, and opt is a build variant that has optimizations and run time debugging support. {cpus} specifies the number of threads.
-   The command that is used for this experiment is the following: 
-        scons build/X86_MESI_THREE_LEVEL/gem5.opt -j8
-   MESI_Three_Level is the cache coherence protocol. After running the command, the compilationis finished and there will be the working gem5 executable. 
-6. To run the configuration script, run the following command
-        build/X86_MESI_THREE_LEVEL/gem5.opt /path/to/your/config --benchmark {gapbs}
-   The benchmark supports the following types:  {gapbs-cc-test,gapbs-cc-small,gapbs-cc-medium,gapbs-bc-test,gapbs-bc-small,gapbs-bc-medium,gapbs-tc-test,gapbs-tc-small,gapbs-tc-medium,gapbs-pr-test,gapbs-pr-small,gapbs-pr-medium,gapbs-bfs-test,gapbs-bfs-small,gapbs-bfs-medium}
-7. The statistics of the program will be located at: 
-        m5out/stats.txt
+**Statistic**
+The statistics are located in m5out/stats.txt inside gem5 repository. The other files, such as config.ini, are list of every SimObject created for simulation and its respective values. 
 
 
-
-**Important Matrix**
+**Important Matrix for stats.txt**
 *Cache*
 1. For cache demand hit, miss, and access, search the following key words:
        demand_hits
@@ -46,9 +41,10 @@
 2. to find bandwidth, either it contains 'bw' or have the description on the side
 
 
-
 **Quick Access to Commands**
 1. Building gem5
-        scons build/X86_MESI_THREE_LEVEL/gem5.opt -j8
-2. Running the configuration script with the benchmark
-        build/X86_MESI_THREE_LEVEL/gem5.opt /path/to/your/config --benchmark {insert-gapbs-benchmark-here}
+        scons build/{ISA}/gem5.{variant} -j{cpus on your platform}
+   e.g.
+        scons build/X86/gem5.opt -j5   
+2. Run configuration scripts (simple)
+        build/{ISA}/gem5.{variant} /path/to/your/config
